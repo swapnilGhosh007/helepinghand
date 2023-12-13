@@ -34,14 +34,14 @@ A web base platform, where clients can hire worker easily.
 
 ## Modules and Features
 
-# Worker:
+### Worker:
 - Can update CV.
 - Can post and update their schedule.
 - Can give Platform feedback 
 - Can update profile.
 - Can update password
 
-# Client:
+### Client:
 - Can see hired workers.
 - Can update profile.
 - Can see available workers according to the selected schedule.
@@ -49,14 +49,14 @@ A web base platform, where clients can hire worker easily.
 - Can give Platform feedback
 - Can see worker profile 
 
-# Services:
+### Services:
 - Easy Navigation.
 - Advanced search. 
 - Workers can see their assigned hourly rate
 - Workers can see their past Reviews.
 - Clients can do payments.
 
-# Admin:
+### Admin:
 - Account approval.
 - Account ban.
 - Can see all users.
