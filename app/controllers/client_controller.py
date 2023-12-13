@@ -127,6 +127,18 @@ class ClientController:
         if client_worker_deal is None:
             # flash("Deal not found", "error")
             return redirect(url_for("client.search_worker"))
+        
+        worker = Worker.query.get(client_worker_deal.worker_id)
+
+        slot_count = int(client_worker_deal.slot1) + int(client_worker_deal.slot2) + int(client_worker_deal.slot3) + int(client_worker_deal.slot4)
+
+        amount = worker.hourly_rate * slot_count * 4 * 5 * 4 * 100 
+        
+        # print(amount, worker.hourly_rate, slot_count)
+        # slot*4 because per slot 4 hrs. 
+        # 4 * 5 because 5 days per week. 4 week per months
+        # 100 cause stripe counts in cents.
+
         if request.method == "POST":
             # CUSTOMER INFO
             customer = stripe.Customer.create(
@@ -135,13 +147,16 @@ class ClientController:
 
             # PAYMENT INFO
             charge = stripe.Charge.create(
-                customer=customer.id, amount=2000, currency="usd", description="Payment"
+                customer=customer.id, amount=amount, currency="usd", description="Payment"
+
             )
+
+
 
             # PAYMENT OBJECT
             payment = Payment(
                 client_worker_deal_id=client_worker_deal.id,
-                amount=2000,
+                amount=amount,
                 date=datetime.now(),
             )
 
