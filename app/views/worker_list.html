@@ -1,0 +1,44 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}View Users{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Users</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <!-- Other columns -->
+                <th>Actions</th> <!-- New column for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.fullname }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <!-- Other data -->
+                {% if user.approval %}
+                <td>
+                    Approved
+                </td>
+                {% else %}
+                <td>
+                    <a href="{{ url_for('admin.approve_worker', id=user.id) }}">
+                        <button type="submit" class="btn btn-success">Approve</button>
+                    </a>
+                </td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

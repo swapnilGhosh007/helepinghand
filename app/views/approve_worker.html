@@ -1,0 +1,16 @@
+{% extends 'admin_layout.html' %}
+
+{% block title %}Approve Worker{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Approve Worker</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="hourly_rate">Hourly Rate</label>
+            <input type="number" class="form-control" id="hourly_rate" name="hourly_rate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Approve</button>
+    </form>
+</div>
+{% endblock %}

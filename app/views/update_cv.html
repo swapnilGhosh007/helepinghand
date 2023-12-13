@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}Update CV{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form_container">
+                <h3 class="card-title text-center">Update CV</h3>
+
+                <form method="post">
+                    <div class="form-group">
+                        <label for="occupation" class="form-label">Occupation</label>
+                        <select class="form-control" name="occupation" id="occupation" required>
+                            <option value="">Select Occupation</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Guard">Guard</option>
+                            <option value="Maid">Maid</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="experience" class="form-label">How many years of experience?</label>
+                        <input class="form-control" name="experience" id="experience" rows="4"
+                            placeholder="Describe your experience" required></>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="marital_status" class="form-label">Married?</label>
+                        <select class="form-control" name="marital_status" id="marital_status" required>
+                            <option value="">Select your marital status</option>
+                            <option value="0">Single</option>
+                            <option value="1">Married</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Update CV</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

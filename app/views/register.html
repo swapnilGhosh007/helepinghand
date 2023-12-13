@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+</head>
+
+<body style="background-color:#ccc;">
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height: 100vh;">
+            <div class="col-md-6">
+                <div class="card" style="background-color: #2596be;">
+                    <div class="card-body text-white">
+                        <h5 class="text-center mb-4">Register New User</h5>
+                        <form action="{{ url_for('auth.register') }}" method="post" autocomplete="off">
+                            <div class="form-group">
+                                <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa"
+                                                aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="name" id="fullname"
+                                            placeholder="Enter your Name" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa"
+                                                aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="email" id="email"
+                                            placeholder="Enter your Email" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username" class="cols-sm-2 control-label">Username</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-users fa"
+                                                aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="username" id="username"
+                                            placeholder="Enter your Username" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password1" class="cols-sm-2 control-label">Password</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="password1" id="password1"
+                                            placeholder="Enter your Password" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password2" class="cols-sm-2 control-label">Confirm Password</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                                aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="password2" id="password2"
+                                            placeholder="Confirm your Password" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>User Type</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="user_type" id="worker"
+                                        value="worker" required>
+                                    <label class="form-check-label" for="worker">Worker</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="user_type" id="client"
+                                        value="client" required>
+                                    <label class="form-check-label" for="client">Client</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="close" aria-label="Close"
+                                        onclick="alert('Close clicked');">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                        <p class="text-center" style="padding:5px;">
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-dark">Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        document.querySelector('.close').onclick = function () {
+            this.closest('.alert').style.display = 'none';
+        };
+    </script>
+</body>
+
+</html>

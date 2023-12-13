@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}View Reviews{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Reviews</h2>
+    <div class="list-group">
+        {% for review in reviews %}
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ review.reviewer_name }}</h5>
+                <small class="text-muted">{{ review.date }}</small>
+            </div>
+            <p class="mb-1">{{ review.comment }}</p>
+        </div>
+        {% else %}
+        <div class="list-group-item">
+            No reviews found.
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

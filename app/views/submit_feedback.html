@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}Submit Feedback{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <h3 class="card-header text-center">Submit Feedback</h3>
+                <div class="card-body">
+                    <form action="{{ url_for('user.submit_feedback') }}" method="post">
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Your Feedback</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="4" placeholder="Please share your thoughts..." required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="text-center mb-4">Profile Page</h1>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">{{ user.fullname }}</h3>
+            <p class="card-text"><strong>Username:</strong> {{ user.username }}</p>
+            <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="card-text"><strong>NID:</strong> {{ user.nid }}</p>
+            <p class="card-text"><strong>Phone:</strong> {{ user.phone }}</p>
+            <p class="card-text"><strong>Address:</strong> {{ user.address }}</p>
+
+            {% if user.user_type == "worker" %}
+            <p class="card-text"><strong>Occupation:</strong> {{ user.occupation }}</p>
+            {% if user.initial_experience %}
+            <p class="card-text"><strong>Years of Experience:</strong> {{ user.get_experience() }}</p>
+            {% endif %}
+            {% if user.marital_status %}
+            <p class="card-text"><strong>Marital Status:</strong> Married</p>
+            {% else %}
+            <p class="card-text"><strong>Marital Status:</strong> Unmarried</p>
+            {% endif %}
+            {% if user.hourly_rate %}
+            <p class="card-text"><strong>Hourly Rate:</strong> {{ user.hourly_rate }}</p>
+            {% else %}
+            <p class="card-text"><strong>Hourly Rate:</strong> Not Set</p>
+            {% endif %}
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

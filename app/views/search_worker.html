@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}Update Schedule{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-8">
+            <div class="update-form-container">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Search Worker</h3>
+
+                    <form action="" method="post">
+
+                        <!-- Dropdown Menu -->
+                        <div class="form-group">
+                            <label for="selectWorker">Select Worker</label>
+                            <select class="form-control" id="selectWorker" name="occupation">
+                                <option value="Maid">Maid</option>
+                                <option value="Nurse">Nurse</option>
+                                <option value="Guard">Guard</option>
+                                <!-- More options here -->
+                            </select>
+                        </div>
+
+                        <!-- Schedule Slots -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="slot1" id="slot1" value="on">
+                            <label class="form-check-label" for="slot1">Slot 1: 8 AM - 12 PM</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="slot2" id="slot2" value="on">
+                            <label class="form-check-label" for="slot2">Slot 2: 12 PM - 4 PM</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="slot3" id="slot3" value="on">
+                            <label class="form-check-label" for="slot3">Slot 3: 4 PM - 8 PM</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="slot4" id="slot4" value="on">
+                            <label class="form-check-label" for="slot4">Slot 4: 8 PM - 12 AM</label>
+                        </div>
+
+                        <div class="form-group text-center mt-3">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

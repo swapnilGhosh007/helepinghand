@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}Hired Wokers{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Hired Workers</h2>
+
+    <!-- Search Results -->
+    <div id="search-results">
+        {% for worker in results %}
+        <div class="container mt-5">
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-7">
+
+                    <div class="card p-3 py-4">
+
+                        <div class="text-center">
+                            <img src="https://5.imimg.com/data5/SD/NV/EI/SELLER-33891574/home-maid-services-500x500.png"
+                                width="100" class="rounded-circle">
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span>
+                            <h5 class="mt-2 mb-0">{{ worker.fullname }}</h5>
+                            <span>{{ worker.occupation }}</span> <br />
+                            <span> Rating: {{ worker.get_rating() }}</span>
+
+                            <div class="px-4 mt-1">
+                                <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+                            </div>
+
+
+                            <div class="buttons">
+                                <a href="{{ url_for('client.view_worker', id=worker.id) }}">
+                                    <button class="btn btn-outline-primary px-4">See Profile</button>
+                                </a>
+                                <a href="{{ url_for('client.submit_review', id=worker.id) }}"><button
+                                        class="btn btn-primary px-4 ms-3">Review</button></a>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        {% else %}
+        <p>No workers found for your search criteria.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

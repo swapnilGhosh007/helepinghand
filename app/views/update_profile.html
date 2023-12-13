@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}Update Profile{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title text-center">Update Profile</h3>
+                </div>
+                <div class="card-body">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <form action="{{ url_for('user.update_profile') }}" method="post">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name"  value="{{ current_user.fullname }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            {% if current_user.username_updated %}
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username cannot be changed"  value="{{ current_user.username }}">
+                            {% else %}
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username"  value="{{ current_user.username }}">
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email"  value="{{ current_user.email }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nid">National ID</label>
+                            {% if current_user.nid_updated %}
+                            <input type="text" class="form-control" name="nid" id="nid" placeholder="NID cannot be changed"  value="{{ current_user.nid }}">
+                            {% else %}
+                            <input type="text" class="form-control" name="nid" id="nid" placeholder="Enter your NID" value="{{ current_user.nid }}">
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your phone number"  value="{{ current_user.phone }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" name="address" id="address" rows="3" placeholder="Enter your address">{{ current_user.address }}</textarea>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

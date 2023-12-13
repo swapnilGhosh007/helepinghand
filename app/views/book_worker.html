@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}Book Worker{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow-sm">
+                <h3 class="card-header text-center">Book Worker</h3>
+                <div class="card-body">
+                    <form method="post">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Available Time Slots</legend>
+                            <div class="form-group">
+                                
+                                {% if schedule.slot1 %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="slot1" id="slot1">
+                                    <label class="form-check-label" for="slot1">Slot 1: 8 AM - 12 PM</label>
+                                </div>
+                                {% else %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="slot1" id="slot1" disabled>
+                                    <label class="form-check-label" for="slot1">Slot 1: 8 AM - 12 PM</label>
+                                </div>
+                                {% endif %}
+
+                                {% if schedule.slot2 %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="slot2" id="slot2">
+                                    <label class="form-check-label" for="slot2">Slot 2: 12 PM - 4 PM</label>
+                                </div>
+                                {% else %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="slot2" id="slot2" disabled>
+                                    <label class="form-check-label" for="slot2">Slot 2: 12 PM - 4 PM</label>
+                                </div>
+                                {% endif %}
+                                
+                                {% if schedule.slot3 %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="slot3" id="slot3">
+                                    <label class="form-check-label" for="slot3">Slot 3: 4 PM - 8 PM</label>
+                                </div>
+                                {% else %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="slot3" id="slot3" disabled>
+                                    <label class="form-check-label" for="slot3">Slot 3: 4 PM - 8 PM</label>
+                                </div>
+                                {% endif %}
+
+                                {% if schedule.slot4 %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="slot4" id="slot4">
+                                    <label class="form-check-label" for="slot4">Slot 4: 8 PM - 12 AM</label>
+                                </div>
+                                {% else %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="slot4" id="slot4" disabled>
+                                    <label class="form-check-label" for="slot4">Slot 4: 8 PM - 12 AM</label>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </fieldset>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary">Book Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
