@@ -8,11 +8,15 @@ class WorkerController:
     
     @login_required
     def view_reviews(self):
+        if current_user.user_type != "worker":
+            return redirect(url_for("user.profile"))
         reviews = Review.query.filter_by(worker_id=current_user.id).all()
 
         return render_template("view_reviews.html", reviews=reviews)
     @login_required
     def update_schedule(self):
+        if current_user.user_type != "worker":
+            return redirect(url_for("user.profile"))
         schedule = Schedule.query.filter_by(worker_id=current_user.id).first()
         if request.method == "POST":
             slot1 = True if request.form.get("slot1") == "on" else False
@@ -40,6 +44,8 @@ class WorkerController:
         return render_template("update_schedule.html", schedule=schedule)
     @login_required
     def update_cv(self):
+        if current_user.user_type != "worker":
+            return redirect(url_for("user.profile"))
         if request.method == "POST":
             occupation = request.form.get("occupation")
             experience = request.form.get("experience")

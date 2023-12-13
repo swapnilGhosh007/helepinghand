@@ -17,6 +17,8 @@ from ..extensions import db, stripe_keys
 class ClientController:
     @login_required
     def search_worker(self):
+        if current_user.user_type != "client":
+            return redirect(url_for("user.profile"))
         if request.method == "POST":
             occupation = request.form.get("occupation")
             slot1 = True if request.form.get("slot1") == "on" else False
@@ -55,6 +57,8 @@ class ClientController:
         return render_template("search_worker.html")
     @login_required
     def view_worker(self, id):
+        if current_user.user_type != "client":
+            return redirect(url_for("user.profile"))
         worker = Worker.query.filter_by(id=id).first()
         if worker is None:
             # flash("Worker not found", "error")
@@ -63,6 +67,8 @@ class ClientController:
         return render_template("worker_profile.html", user=worker)
     @login_required
     def view_past_workers(self):
+        if current_user.user_type != "client":
+            return redirect(url_for("user.profile"))
         deals = ClientWorkerDeal.query.filter_by(client_id=current_user.id).all()
         workers = []
         for deal in deals:
@@ -71,6 +77,8 @@ class ClientController:
         return render_template("my_workers.html", results=workers)
     @login_required
     def book_worker(self, id):
+        if current_user.user_type != "client":
+            return redirect(url_for("user.profile"))
         worker = Worker.query.filter_by(id=id).first()
         if worker is None:
             flash("Worker not found", "error")
@@ -113,6 +121,8 @@ class ClientController:
         return render_template("book_worker.html", schedule=schedule)
     @login_required
     def payment(self, id):
+        if current_user.user_type != "client":
+            return redirect(url_for("user.profile"))
         client_worker_deal = ClientWorkerDeal.query.get(id)
         if client_worker_deal is None:
             # flash("Deal not found", "error")
@@ -147,6 +157,8 @@ class ClientController:
 
     @login_required
     def submit_review(self, id):
+        if current_user.user_type != "client":
+            return redirect(url_for("user.profile"))
         if request.method == "POST":
             # worker_username = request.form.get("worker_username")
             rating = request.form.get("rating")
